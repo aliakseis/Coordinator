@@ -13,6 +13,9 @@
 #include  <algorithm>
 #include  <vector>
 
+#include <filesystem>
+
+// for %f in (*.tif) do C:\workspace\Coordinator\x64\Release\Coordinator.exe "%~nf".tif c:\images\coords/"%~nf".csv
 
 auto getCenters(const cv::Mat& img_thr)
 {
@@ -32,13 +35,14 @@ auto getCenters(const cv::Mat& img_thr)
     return result;
 }
 
+enum { NUM_POINTS = 32 };
+
 void QuickNDirtyFix(std::vector<cv::Point2d>& reducedLines)
 {
     // quick'n'dirty fix
     auto sample = reducedLines.back();
     auto step = (sample - reducedLines.front()) / int(reducedLines.size() - 1);
 
-    enum { NUM_POINTS = 32 };
 
     for (int i = reducedLines.size(); i < NUM_POINTS; ++i) {
         sample += step;
@@ -57,76 +61,112 @@ int main(int argc, char** argv)
 
     try {
 
-        const char* filename = argv[1];
+        //const char* filename = argv[1];
 
-        cv::Mat src = cv::imread(filename);
+        const char* dirname = argv[1];
 
-        if (src.empty())
-        {
-            std::cerr << "Could not read input file.\n";
-            return 1;
-        }
-
-        cv::Mat data;
-        src.convertTo(data, CV_32F);
-        data = data.reshape(1, data.total());
-
-        // do kmeans
-        enum { K = 3 };
-        cv::Mat kmeansLabels;
-        std::vector<cv::Vec3f> kmeansCenters;
-        cv::kmeans(data, K, kmeansLabels, cv::TermCriteria(cv::TermCriteria::MAX_ITER, 10, 1.0), 3,
-            cv::KMEANS_PP_CENTERS, kmeansCenters);
-
-        const auto minmax = std::minmax_element(kmeansCenters.begin(), kmeansCenters.end(), 
-            [](const cv::Vec3f& left, const cv::Vec3f& right) { return left[0] - left[2] < right[0] - right[2]; });
-
-        auto redsIdx = minmax.first - kmeansCenters.begin();
-        auto bluesIdx = minmax.second - kmeansCenters.begin();
-
-        cv::Mat reds = kmeansLabels == redsIdx;
-        cv::Mat blues = kmeansLabels == bluesIdx;
-
-        reds = reds.reshape(1, src.rows);
-        blues = blues.reshape(1, src.rows);
-
-        auto redCenters = getCenters(reds);
-        auto blueCenters = getCenters(blues);
-
-        auto point2dSortLam = [](const cv::Point2d& left, const cv::Point2d& right) {
-            return left.x < right.x;
-        };
-
-        std::sort(redCenters.begin(), redCenters.end(), point2dSortLam);
-        std::sort(blueCenters.begin(), blueCenters.end(), point2dSortLam);
-
-        const bool upsideDown = redCenters[0].y > blueCenters[0].y;
-
-        if (upsideDown)
-        {
-            std::reverse(redCenters.begin(), redCenters.end());
-            std::reverse(blueCenters.begin(), blueCenters.end());
-        }
-
-        QuickNDirtyFix(redCenters);
-        QuickNDirtyFix(blueCenters);
+        std::vector<cv::String> fn;
+        cv::glob(cv::String(dirname) + "/*.tif", fn, true);
 
         const char* out = argv[2];
 
         std::ofstream ostr(out);
+        if (!ostr) {
+            std::cerr << "Cannot open output file.\n";
+            return 1;
+        }
 
         std::cout << "writing to " << out << '\n';
 
-        for (const auto& lst : { redCenters, blueCenters })
+        for (int i = 0; i < NUM_POINTS; ++i)
+            ostr << "red_" << i << "_x,red_" << i << "_y,";
+        for (int i = 0; i < NUM_POINTS; ++i)
+            ostr << "blue_" << i << "_x,blue_" << i << "_y,";
+
+        ostr << "id_string\n";
+
+        for (const auto& filename : fn)
         {
-            bool start = true;
-            for (auto& v : lst)
+            cv::Mat src = cv::imread(filename);
+
+            if (src.empty())
             {
-                if (!start)
-                    ostr << ',';
-                start = false;
-                ostr << (v.x / src.cols) << ',' << (v.y / src.rows);
+                std::cerr << "Could not read input file.\n";
+                return 1;
             }
+
+            cv::Mat data;
+            src.convertTo(data, CV_32F);
+            data = data.reshape(1, data.total());
+
+            // do kmeans
+            enum { K = 3 };
+            cv::Mat kmeansLabels;
+            std::vector<cv::Vec3f> kmeansCenters;
+            cv::kmeans(data, K, kmeansLabels, cv::TermCriteria(cv::TermCriteria::MAX_ITER, 10, 1.0), 3,
+                cv::KMEANS_PP_CENTERS, kmeansCenters);
+
+            if (kmeansCenters.size() < K)
+                continue;
+
+            const auto minmax = std::minmax_element(kmeansCenters.begin(), kmeansCenters.end(),
+                [](const cv::Vec3f& left, const cv::Vec3f& right) { return left[0] - left[2] < right[0] - right[2]; });
+
+            auto redsIdx = minmax.first - kmeansCenters.begin();
+            auto bluesIdx = minmax.second - kmeansCenters.begin();
+
+            cv::Mat reds = kmeansLabels == redsIdx;
+            cv::Mat blues = kmeansLabels == bluesIdx;
+
+            reds = reds.reshape(1, src.rows);
+            blues = blues.reshape(1, src.rows);
+
+            auto redCenters = getCenters(reds);
+            auto blueCenters = getCenters(blues);
+
+            if (redCenters.size() < 2 || blueCenters.size() < 2)
+                continue;
+
+            auto point2dSortLam = [](const cv::Point2d& left, const cv::Point2d& right) {
+                return left.x < right.x;
+            };
+
+            std::sort(redCenters.begin(), redCenters.end(), point2dSortLam);
+            std::sort(blueCenters.begin(), blueCenters.end(), point2dSortLam);
+
+            const bool upsideDown = redCenters[0].y > blueCenters[0].y;
+
+            if (upsideDown)
+            {
+                std::reverse(redCenters.begin(), redCenters.end());
+                std::reverse(blueCenters.begin(), blueCenters.end());
+            }
+
+            QuickNDirtyFix(redCenters);
+            QuickNDirtyFix(blueCenters);
+
+            if (redCenters.back().x < 0 || redCenters.back().x > src.cols || blueCenters.back().x < 0 || blueCenters.back().x > src.cols
+                || redCenters.back().y < 0 || redCenters.back().y > src.rows || blueCenters.back().y < 0 || blueCenters.back().y > src.rows)
+                continue;
+
+
+            for (const auto& lst : { redCenters, blueCenters })
+            {
+                for (auto& v : lst)
+                {
+                    ostr << (v.x / src.cols) << ',' << (v.y / src.rows);
+                    ostr << ',';
+                }
+            }
+
+            auto name = filename.substr(0, filename.find_last_of('.'));
+            const auto pos = name.find_last_of("\\/");
+            if (decltype(name)::npos != pos)
+            {
+                name = name.substr(pos + 1);
+            }
+
+            ostr << '"' << name << '"';
             ostr << '\n';
         }
 
