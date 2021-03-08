@@ -35,7 +35,7 @@ auto getCenters(const cv::Mat& img_thr)
     return result;
 }
 
-enum { NUM_POINTS = 32 };
+enum { NUM_POINTS = 31 };
 
 void QuickNDirtyFix(std::vector<cv::Point2d>& reducedLines)
 {
@@ -54,7 +54,7 @@ void QuickNDirtyFix(std::vector<cv::Point2d>& reducedLines)
 
 int main(int argc, char** argv)
 {
-    if (argc < 3) {
+    if (argc < 4) {
         std::cerr << "Wrong number of arguments.\n";
         return 1;
     }
@@ -85,8 +85,18 @@ int main(int argc, char** argv)
 
         ostr << "id_string\n";
 
+        std::vector<cv::String> bads;
+
         for (const auto& filename : fn)
         {
+            auto name = filename.substr(0, filename.find_last_of('.'));
+            const auto pos = name.find_last_of("\\/");
+            if (decltype(name)::npos != pos)
+            {
+                name = name.substr(pos + 1);
+            }
+            bads.push_back(name);
+
             cv::Mat src = cv::imread(filename);
 
             if (src.empty())
@@ -127,6 +137,9 @@ int main(int argc, char** argv)
             if (redCenters.size() < 2 || blueCenters.size() < 2)
                 continue;
 
+            if (redCenters.size() > NUM_POINTS + 1 || blueCenters.size() > NUM_POINTS + 1)
+                continue;
+
             auto point2dSortLam = [](const cv::Point2d& left, const cv::Point2d& right) {
                 return left.x < right.x;
             };
@@ -149,6 +162,8 @@ int main(int argc, char** argv)
                 || redCenters.back().y < 0 || redCenters.back().y > src.rows || blueCenters.back().y < 0 || blueCenters.back().y > src.rows)
                 continue;
 
+            if (upsideDown ? redCenters.back().y <= blueCenters.back().y : redCenters.back().y >= blueCenters.back().y)
+                continue;
 
             for (const auto& lst : { redCenters, blueCenters })
             {
@@ -159,15 +174,22 @@ int main(int argc, char** argv)
                 }
             }
 
-            auto name = filename.substr(0, filename.find_last_of('.'));
-            const auto pos = name.find_last_of("\\/");
-            if (decltype(name)::npos != pos)
-            {
-                name = name.substr(pos + 1);
-            }
 
             ostr << '"' << name << '"';
             ostr << '\n';
+
+            bads.pop_back();
+        }
+
+        std::ofstream badsstream(argv[3]);
+        if (!badsstream) {
+            std::cerr << "Cannot open bads output file.\n";
+            return 1;
+        }
+
+        for (const auto& s : bads)
+        {
+            badsstream << s << '\n';
         }
 
         return 0;
