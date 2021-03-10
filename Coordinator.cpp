@@ -158,9 +158,9 @@ int main(int argc, char** argv)
             QuickNDirtyFix(redCenters);
             QuickNDirtyFix(blueCenters);
 
-            if (redCenters.back().x < 0 || redCenters.back().x > src.cols || blueCenters.back().x < 0 || blueCenters.back().x > src.cols
-                || redCenters.back().y < 0 || redCenters.back().y > src.rows || blueCenters.back().y < 0 || blueCenters.back().y > src.rows)
-                continue;
+            //if (redCenters.back().x < 0 || redCenters.back().x > src.cols || blueCenters.back().x < 0 || blueCenters.back().x > src.cols
+            //    || redCenters.back().y < 0 || redCenters.back().y > src.rows || blueCenters.back().y < 0 || blueCenters.back().y > src.rows)
+            //    continue;
 
             if (upsideDown ? redCenters.back().y <= blueCenters.back().y : redCenters.back().y >= blueCenters.back().y)
                 continue;
