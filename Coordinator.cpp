@@ -5,6 +5,8 @@
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/imgproc.hpp"
 
+#include "LinesMeasurerLibrary/detect-lines.h"
+
 #include <iostream>
 #include <fstream>
 #include <map>
@@ -52,9 +54,24 @@ void QuickNDirtyFix(std::vector<cv::Point2d>& reducedLines)
     reducedLines.resize(NUM_POINTS);
 }
 
+template<typename T> bool isIncreaingSequence(T it1, const T it1End, T it2, const T it2End)
+{
+    int prevX = INT_MIN;
+    for (; it1 != it1End && it2 != it2End; ++it1, it2)
+    {
+        for (auto& v : { *it1, *it2 })
+        {
+            if (v.x < prevX)
+                return false;
+        }
+    }
+    return true;
+}
+
+
 int main(int argc, char** argv)
 {
-    if (argc < 4) {
+    if (argc < 5) {
         std::cerr << "Wrong number of arguments.\n";
         return 1;
     }
@@ -165,11 +182,67 @@ int main(int argc, char** argv)
             if (upsideDown ? redCenters.back().y <= blueCenters.back().y : redCenters.back().y >= blueCenters.back().y)
                 continue;
 
+            if (!upsideDown && !isIncreaingSequence(redCenters.begin(), redCenters.end(), blueCenters.begin(), blueCenters.end()))
+                continue;
+            if (upsideDown && !isIncreaingSequence(blueCenters.rbegin(), blueCenters.rend(), redCenters.rbegin(), redCenters.rend()))
+                continue;
+
+            for (auto& lst : { std::ref(redCenters), std::ref(blueCenters) })
+            {
+                for (auto& v : lst.get())
+                {
+                    v.x /= src.cols;
+                    v.y /= src.rows;
+                }
+            }
+
+
+            // alternative
+            const auto altPath = argv[4] + ('/' + name) + ".tif";
+
+            std::vector<std::tuple<double, double, double, double, double>> alternative;
+            try {
+                alternative = calculating(altPath);
+            }
+            catch (const std::exception& ex) {
+                continue;
+            }
+
+            if (alternative.size() != NUM_POINTS)
+                continue;
+
+            bool tooFar = false;
+
+            for (int i = 0; i < NUM_POINTS; ++i)
+            {
+                auto& line = alternative[i];
+                cv::Point2d ptRed(std::get<0>(line), std::get<1>(line)), ptBlue(std::get<2>(line), std::get<3>(line));
+                const auto X_DIST = 0.01;
+                const auto Y_DIST = 0.02;
+
+                const auto redsDiffer = abs(ptRed.x - redCenters[i].x) > X_DIST || abs(ptRed.y - redCenters[i].y) > Y_DIST;
+                const auto bluesDiffer = abs(ptBlue.x - blueCenters[i].x) > X_DIST || abs(ptBlue.y - blueCenters[i].y) > Y_DIST;
+
+                if (bluesDiffer)
+                {
+                    tooFar = true;
+                    break;
+                }
+
+                if (!redsDiffer)
+                    redCenters[i] = (redCenters[i] + ptRed) / 2;
+                if (!bluesDiffer)
+                    blueCenters[i] = (blueCenters[i] + ptBlue) / 2;
+            }
+
+            if (tooFar)
+                continue;
+
             for (const auto& lst : { redCenters, blueCenters })
             {
                 for (auto& v : lst)
                 {
-                    ostr << (v.x / src.cols) << ',' << (v.y / src.rows);
+                    ostr << v.x << ',' << v.y;
                     ostr << ',';
                 }
             }

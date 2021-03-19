@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5E1864DD-F5E9-3DAE-8C0C-AFA377E68E99}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>LinesMeasurerLibrary</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+    <VcpkgEnabled>false</VcpkgEnabled>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="do_not_import_user.props" Condition="exists('do_not_import_user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\build64\LinesMeasurerLibrary\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LinesMeasurerLibrary.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">LinesMeasurerLibrary</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\build64\LinesMeasurerLibrary\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LinesMeasurerLibrary.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">LinesMeasurerLibrary</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">..\build64\LinesMeasurerLibrary\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LinesMeasurerLibrary.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">LinesMeasurerLibrary</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">..\build64\LinesMeasurerLibrary\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LinesMeasurerLibrary.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">LinesMeasurerLibrary</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;BUILD_MAIN_LIBRARY;GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=__declspec(dllimport);GOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=__declspec(dllimport);GFLAGS_IS_A_DLL=1;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;BUILD_MAIN_LIBRARY;GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=__declspec(dllimport);GOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=__declspec(dllimport);GFLAGS_IS_A_DLL=1;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BUILD_MAIN_LIBRARY;GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=__declspec(dllimport);GOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=__declspec(dllimport);GFLAGS_IS_A_DLL=1;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BUILD_MAIN_LIBRARY;GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=__declspec(dllimport);GOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=__declspec(dllimport);GFLAGS_IS_A_DLL=1;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BUILD_MAIN_LIBRARY;GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=__declspec(dllimport);GOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=__declspec(dllimport);GFLAGS_IS_A_DLL=1;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BUILD_MAIN_LIBRARY;GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=__declspec(dllimport);GOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=__declspec(dllimport);GFLAGS_IS_A_DLL=1;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BUILD_MAIN_LIBRARY;GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=__declspec(dllimport);GOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=__declspec(dllimport);GFLAGS_IS_A_DLL=1;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;BUILD_MAIN_LIBRARY;GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=__declspec(dllimport);GOOGLE_GLOG_DLL_DECL_FOR_UNITTESTS=__declspec(dllimport);GFLAGS_IS_A_DLL=1;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\LinesMeasurerLibrary;C:\vcpkg\installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\LinesMeasurerLibrary\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/workspace/lines-measurer/LinesMeasurerLibrary/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/workspace/lines-measurer -BC:/workspace/lines-measurer/build64 --check-stamp-file C:/workspace/lines-measurer/build64/LinesMeasurerLibrary/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.19\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.19\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.19\Modules\FindPackageMessage.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresConfig.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresConfigVersion.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets-debug.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets-release.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets.cmake;C:\vcpkg\installed\x64-windows\share\ceres\FindEigen.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3Config.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3ConfigVersion.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3Targets.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-config-version.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-config.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets-debug.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets-release.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-config-version.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-config.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets-debug.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets-release.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVConfig-version.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVConfig.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules-debug.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules-release.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\build64\LinesMeasurerLibrary\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/workspace/lines-measurer/LinesMeasurerLibrary/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/workspace/lines-measurer -BC:/workspace/lines-measurer/build64 --check-stamp-file C:/workspace/lines-measurer/build64/LinesMeasurerLibrary/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.19\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.19\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.19\Modules\FindPackageMessage.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresConfig.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresConfigVersion.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets-debug.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets-release.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets.cmake;C:\vcpkg\installed\x64-windows\share\ceres\FindEigen.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3Config.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3ConfigVersion.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3Targets.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-config-version.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-config.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets-debug.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets-release.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-config-version.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-config.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets-debug.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets-release.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVConfig-version.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVConfig.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules-debug.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules-release.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\build64\LinesMeasurerLibrary\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/workspace/lines-measurer/LinesMeasurerLibrary/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/workspace/lines-measurer -BC:/workspace/lines-measurer/build64 --check-stamp-file C:/workspace/lines-measurer/build64/LinesMeasurerLibrary/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.19\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.19\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.19\Modules\FindPackageMessage.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresConfig.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresConfigVersion.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets-debug.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets-release.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets.cmake;C:\vcpkg\installed\x64-windows\share\ceres\FindEigen.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3Config.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3ConfigVersion.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3Targets.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-config-version.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-config.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets-debug.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets-release.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-config-version.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-config.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets-debug.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets-release.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVConfig-version.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVConfig.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules-debug.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules-release.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">..\build64\LinesMeasurerLibrary\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/workspace/lines-measurer/LinesMeasurerLibrary/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/workspace/lines-measurer -BC:/workspace/lines-measurer/build64 --check-stamp-file C:/workspace/lines-measurer/build64/LinesMeasurerLibrary/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.19\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-3.19\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.19\Modules\FindPackageMessage.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresConfig.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresConfigVersion.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets-debug.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets-release.cmake;C:\vcpkg\installed\x64-windows\share\ceres\CeresTargets.cmake;C:\vcpkg\installed\x64-windows\share\ceres\FindEigen.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3Config.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3ConfigVersion.cmake;C:\vcpkg\installed\x64-windows\share\eigen3\Eigen3Targets.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-config-version.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-config.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets-debug.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets-release.cmake;C:\vcpkg\installed\x64-windows\share\gflags\gflags-nonamespace-targets.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-config-version.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-config.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets-debug.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets-release.cmake;C:\vcpkg\installed\x64-windows\share\glog\glog-targets.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVConfig-version.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVConfig.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules-debug.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules-release.cmake;C:\vcpkg\installed\x64-windows\share\opencv\OpenCVModules.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">..\build64\LinesMeasurerLibrary\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\LinesMeasurerLibrary\detect-lines.cpp" />
+    <ClCompile Include="..\LinesMeasurerLibrary\known-good.cpp" />
+    <ClInclude Include="..\LinesMeasurerLibrary\detect-lines.h" />
+    <ClInclude Include="..\LinesMeasurerLibrary\known-good.h" />
+    <ClInclude Include="..\LinesMeasurerLibrary\tswdft2d.h" />
+    <ClInclude Include="..\LinesMeasurerLibrary\nanoflann.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
