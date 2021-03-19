@@ -197,7 +197,23 @@ int main(int argc, char** argv)
             }
 
 
+
+            for (const auto& lst : { redCenters, blueCenters })
+            {
+                for (auto& v : lst)
+                {
+                    ostr << v.x << ',' << v.y;
+                    ostr << ',';
+                }
+            }
+            ostr << '"' << name << '"';
+            ostr << '\n';
+
+            bads.pop_back();
+
             // alternative
+            std::vector<cv::Point2d> altRedCenters, altBlueCenters;
+
             const auto altPath = argv[4] + ('/' + name) + ".tif";
 
             std::vector<std::tuple<double, double, double, double, double>> alternative;
@@ -223,22 +239,25 @@ int main(int argc, char** argv)
                 const auto redsDiffer = abs(ptRed.x - redCenters[i].x) > X_DIST || abs(ptRed.y - redCenters[i].y) > Y_DIST;
                 const auto bluesDiffer = abs(ptBlue.x - blueCenters[i].x) > X_DIST || abs(ptBlue.y - blueCenters[i].y) > Y_DIST;
 
-                if (bluesDiffer)
+                if (redsDiffer || bluesDiffer)
                 {
                     tooFar = true;
                     break;
                 }
 
-                if (!redsDiffer)
-                    redCenters[i] = (redCenters[i] + ptRed) / 2;
-                if (!bluesDiffer)
-                    blueCenters[i] = (blueCenters[i] + ptBlue) / 2;
+                altRedCenters.push_back(ptRed); 
+                altBlueCenters.push_back(ptBlue);
+
+                //if (!redsDiffer)
+                //    redCenters[i] = (redCenters[i] + ptRed) / 2;
+                //if (!bluesDiffer)
+                //    blueCenters[i] = (blueCenters[i] + ptBlue) / 2;
             }
 
             if (tooFar)
                 continue;
 
-            for (const auto& lst : { redCenters, blueCenters })
+            for (const auto& lst : { altRedCenters, altBlueCenters })
             {
                 for (auto& v : lst)
                 {
@@ -246,12 +265,8 @@ int main(int argc, char** argv)
                     ostr << ',';
                 }
             }
-
-
             ostr << '"' << name << '"';
             ostr << '\n';
-
-            bads.pop_back();
         }
 
         std::ofstream badsstream(argv[3]);
