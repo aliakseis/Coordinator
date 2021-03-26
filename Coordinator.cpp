@@ -212,6 +212,7 @@ int main(int argc, char** argv)
             bads.pop_back();
 
             // alternative
+            /*
             std::vector<cv::Point2d> altRedCenters, altBlueCenters;
 
             const auto altPath = argv[4] + ('/' + name) + ".tif";
@@ -267,6 +268,7 @@ int main(int argc, char** argv)
             }
             ostr << '"' << name << '"';
             ostr << '\n';
+            */
         }
 
         std::ofstream badsstream(argv[3]);
